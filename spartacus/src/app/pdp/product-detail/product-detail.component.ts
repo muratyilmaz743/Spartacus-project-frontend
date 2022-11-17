@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from '@spartacus/core';
+import {CurrentProductService} from '@spartacus/storefront';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private currentProductService: CurrentProductService) {
+  }
+
+  // @ts-ignore
+  product$: Observable<Product> = this.currentProductService.getProduct();
 
   ngOnInit(): void {
   }

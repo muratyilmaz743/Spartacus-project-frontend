@@ -1,1 +1,7 @@
-<p>product-detail works!</p>
+<ng-container *ngIf="product$ | async as product">
+  <h1>{{product?.name}}</h1>
+  <h3>{{product?.price?.formattedValue}}</h3>
+  <cx-star-rating [rating]="3"
+                  [disabled] = "true"
+  > </cx-star-rating>
+</ng-container>

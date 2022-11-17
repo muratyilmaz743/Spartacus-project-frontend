@@ -1,0 +1,6 @@
+<ng-container *ngIf="product$ | async as product">
+  <div class="col-md-12 p-3 text-center bg-info">
+    {{product?.name}} - {{product?.averageRating}}
+  </div>
+</ng-container>
+

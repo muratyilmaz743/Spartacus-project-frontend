@@ -4,10 +4,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
-import { provideConfig } from "@spartacus/core";
 import { AppRoutingModule } from "@spartacus/storefront";
 import { AppComponent } from './app.component';
 import { SpartacusModule } from './spartacus/spartacus.module';
+import { PdpModule} from  './pdp/pdp.module';
+import { PagesModule} from  './pages/pages.module';
+
+import { translations, translationChunksConfig } from '@spartacus/assets';
 
 @NgModule({
   declarations: [
@@ -20,12 +23,14 @@ import { SpartacusModule } from './spartacus/spartacus.module';
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     SpartacusModule,
-    BrowserTransferStateModule
+    BrowserTransferStateModule,
+    PdpModule,
+    PagesModule
   ],
 
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   static withConfig(name?: string): ModuleWithProviders{
     return {
       ngModule: AppModule,
@@ -37,13 +42,12 @@ export class AppModule {
           }
         },
         context: {
-          currency: ['USD'],
-          language: ['en'],
           baseSite: ['electronics-spa']
         },
         i18n: {
-          fallbackLang: 'en'
-        }
+          resources: translations,
+          chunks: translationChunksConfig,
+        },
       }],
     }
   }
